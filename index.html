@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flow - Environmental Focus & Time Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+
+    <div class="bird bird1">🦅</div>
+    <div class="bird bird2">🕊️</div>
+    <div class="bird bird3">🦆</div>
+
+    <div class="min-h-screen py-8">
+        <header class="text-center mb-8">
+            <h1 class="logo-text mb-4">Flow</h1>
+            <p class="text-xl text-green-700 font-medium">Grow Your Focus, Nurture Our Planet</p>
+        </header>
+
+        <nav class="bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-full shadow-md max-w-xl mx-auto p-2 mb-8 flex justify-around">
+            <a href="#home" class="nav-link active py-2 px-6 rounded-full font-semibold text-green-700 hover:bg-green-100 transition-colors duration-200" onclick="showSection('home')">
+                <i class="fas fa-home mr-2"></i>Home
+            </a>
+            <a href="#block" class="nav-link py-2 px-6 rounded-full font-semibold text-green-700 hover:bg-green-100 transition-colors duration-200" onclick="showSection('block')">
+                <i class="fas fa-ban mr-2"></i>Block
+            </a>
+            <a href="#stats" class="nav-link py-2 px-6 rounded-full font-semibold text-green-700 hover:bg-green-100 transition-colors duration-200" onclick="showSection('stats')">
+                <i class="fas fa-chart-line mr-2"></i>Stats
+            </a>
+        </nav>
+
+        <div class="max-w-6xl mx-auto px-4">
+            <div id="home" class="content-section">
+                <div class="feature-card rounded-3xl p-8 mb-8 text-center relative overflow-hidden">
+                    <div class="grass"></div>
+                    <div class="mb-6">
+                        <div class="timer-display mb-4" id="timerDisplay">25:00</div>
+                        <div class="flex justify-center space-x-4 mb-6">
+                            <button onclick="startTimer()" class="btn-primary text-white px-6 py-3 rounded-full font-semibold">
+                                <i class="fas fa-play mr-2"></i>Start Focus
+                            </button>
+                            <button onclick="pauseTimer()" class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-full font-semibold">
+                                <i class="fas fa-pause mr-2"></i>Pause
+                            </button>
+                            <button onclick="resetTimer()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-full font-semibold">
+                                <i class="fas fa-stop mr-2"></i>Reset
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="tree-container floating-element">
+                        <div class="tree-trunk"></div>
+                        <div class="tree-leaves" id="treeLeaves">
+                            <span class="leaf leaf1"></span>
+                            <span class="leaf leaf2"></span>
+                            <span class="leaf leaf3"></span>
+                            <span class="leaf leaf4"></span>
+                            <span class="leaf leaf5"></span>
+                            <span class="leaf leaf6"></span>
+                            <span class="leaf leaf7"></span>
+                            <span class="leaf leaf8"></span>
+                            <span class="leaf leaf9"></span>
+                        </div>
+                    </div>
+
+                    <div class="absolute top-8 right-8">
+                        <svg class="progress-ring" width="80" height="80">
+                            <circle class="progress-ring-circle" stroke="#22c55e" stroke-width="4" fill="transparent" r="45" cx="40" cy="40" id="progressCircle"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center text-sm font-semibold text-green-700" id="progressText">0%</div>
+                    </div>
+                </div>
+
+                <div class="feature-card rounded-2xl p-6 mb-8">
+                    <h3 class="text-xl font-semibold text-green-800 mb-4 text-center">
+                        <i class="fas fa-cog mr-2"></i>Quick Settings
+                    </h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <button onclick="setTimer(25)" class="bg-green-100 hover:bg-green-200 text-green-800 py-3 px-4 rounded-lg font-semibold">
+                            25 min<br><span class="text-sm">Pomodoro</span>
+                        </button>
+                        <button onclick="setTimer(45)" class="bg-blue-100 hover:bg-blue-200 text-blue-800 py-3 px-4 rounded-lg font-semibold">
+                            45 min<br><span class="text-sm">Deep Work</span>
+                        </button>
+                        <button onclick="setTimer(60)" class="bg-purple-100 hover:bg-purple-200 text-purple-800 py-3 px-4 rounded-lg font-semibold">
+                            60 min<br><span class="text-sm">Study</span>
+                        </button>
+                        <button onclick="setTimer(90)" class="bg-yellow-100 hover:bg-yellow-200 text-yellow-800 py-3 px-4 rounded-lg font-semibold">
+                            90 min<br><span class="text-sm">Flow State</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="feature-card rounded-2xl p-6">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-leaf text-4xl text-green-500 mb-3"></i>
+                        <h3 class="text-xl font-semibold text-green-800">Eco Impact</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-green-700">CO₂ Saved</span>
+                            <span class="font-bold text-green-800" id="co2Saved">0 kg</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-green-700">Energy Saved</span>
+                            <span class="font-bold text-green-800" id="energySaved">0 kWh</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-green-700">Virtual Forest</span>
+                            <span class="font-bold text-green-800" id="virtualTrees">0 trees</span>
+                        </div>
+                        <div class="text-center mt-4">
+                            <div class="text-3xl mb-2">🌍</div>
+                            <p class="text-sm text-green-600">Every focused minute helps our planet!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="block" class="content-section hidden">
+                <div class="feature-card rounded-2xl p-6 mb-8">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-shield-alt text-4xl text-red-500 mb-3"></i>
+                        <h3 class="text-xl font-semibold text-green-800">App Blocker</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-2">
+                            <input type="checkbox" id="blockSocial" class="w-4 h-4 text-green-600">
+                            <label for="blockSocial" class="text-green-700">Social Media</label>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <input type="checkbox" id="blockGaming" class="w-4 h-4 text-green-600">
+                            <label for="blockGaming" class="text-green-700">Gaming Apps</label>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <input type="checkbox" id="blockStreaming" class="w-4 h-4 text-green-600">
+                            <label for="blockStreaming" class="text-green-700">Streaming</label>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <input type="checkbox" id="blockNews" class="w-4 h-4 text-green-600">
+                            <label for="blockNews" class="text-green-700">News Sites</label>
+                        </div>
+                        <button class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg font-semibold mt-3">
+                            <i class="fas fa-ban mr-2"></i>Activate Block
+                        </button>
+                    </div>
+                </div>
+
+                <div class="feature-card rounded-2xl p-8 text-center">
+                    <h3 class="text-2xl font-bold text-green-800 mb-4">
+                        🌱 Today's Eco Inspiration
+                    </h3>
+                    <p class="text-lg text-green-700 mb-6" id="motivationText">
+                        "The best time to plant a tree was 20 years ago. The second best time is now. Start your focus journey today!"
+                    </p>
+                    <div class="flex justify-center space-x-8 text-center">
+                        <div>
+                            <div class="text-3xl text-green-500 mb-2">🏆</div>
+                            <div class="text-sm text-green-700">Current Streak</div>
+                            <div class="text-xl font-bold text-green-800" id="currentStreak">0 days</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl text-green-500 mb-2">⭐</div>
+                            <div class="text-sm text-green-700">Level</div>
+                            <div class="text-xl font-bold text-green-800" id="userLevel">Seedling</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl text-green-500 mb-2">🎯</div>
+                            <div class="text-sm text-green-700">Daily Goal</div>
+                            <div class="text-xl font-bold text-green-800" id="dailyGoal">2 hours</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="stats" class="content-section hidden">
+                <div class="feature-card rounded-2xl p-6 mb-8">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-calendar-day text-4xl text-green-500 mb-3"></i>
+                        <h3 class="text-xl font-semibold text-green-800">Daily Progress</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-green-700">Focus Sessions</span>
+                            <span class="font-bold text-green-800" id="dailySessions">0</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-green-700">Total Time</span>
+                            <span class="font-bold text-green-800" id="dailyTime">0h 0m</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-green-700">Trees Grown</span>
+                            <span class="font-bold text-green-800" id="treesGrown">0 🌳</span>
+                        </div>
+                        <div class="w-full bg-green-200 rounded-full h-3">
+                            <div class="bg-green-500 h-3 rounded-full transition-all duration-500" style="width: 0%" id="dailyProgressBar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-grid mb-8">
+                    <div class="chart-container">
+                        <h3 class="text-lg font-semibold text-green-800 mb-4">Weekly Focus Time</h3>
+                        <canvas id="weeklyChart"></canvas>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3 class="text-lg font-semibold text-green-800 mb-4">Focus Categories</h3>
+                        <canvas id="categoriesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

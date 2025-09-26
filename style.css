@@ -1,0 +1,373 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #e8f5e8 0%, #a8d8a8 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    opacity: 0.7;
+    animation: float 20s infinite linear;
+}
+
+.cloud::before,
+.cloud::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+}
+
+.cloud1 {
+    width: 80px;
+    height: 40px;
+    top: 20%;
+    left: -100px;
+    animation-duration: 25s;
+}
+
+.cloud1::before {
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    left: 10px;
+}
+
+.cloud1::after {
+    width: 60px;
+    height: 40px;
+    top: -15px;
+    right: 10px;
+}
+
+.cloud2 {
+    width: 60px;
+    height: 30px;
+    top: 10%;
+    left: -80px;
+    animation-duration: 30s;
+    animation-delay: -10s;
+}
+
+.cloud2::before {
+    width: 40px;
+    height: 40px;
+    top: -20px;
+    left: 15px;
+}
+
+.cloud2::after {
+    width: 50px;
+    height: 30px;
+    top: -10px;
+    right: 15px;
+}
+
+.cloud3 {
+    width: 100px;
+    height: 50px;
+    top: 5%;
+    left: -120px;
+    animation-duration: 35s;
+    animation-delay: -20s;
+}
+
+.cloud3::before {
+    width: 60px;
+    height: 60px;
+    top: -30px;
+    left: 20px;
+}
+
+.cloud3::after {
+    width: 70px;
+    height: 50px;
+    top: -20px;
+    right: 20px;
+}
+
+@keyframes float {
+    0% { transform: translateX(-100px); }
+    100% { transform: translateX(calc(100vw + 100px)); }
+}
+
+.bird {
+    position: absolute;
+    font-size: 20px;
+    color: #4a5568;
+    animation: fly 15s infinite linear;
+    opacity: 0.6;
+}
+
+.bird1 {
+    top: 15%;
+    left: -50px;
+    animation-duration: 18s;
+}
+
+.bird2 {
+    top: 25%;
+    left: -30px;
+    animation-duration: 22s;
+    animation-delay: -8s;
+}
+
+.bird3 {
+    top: 8%;
+    left: -40px;
+    animation-duration: 20s;
+    animation-delay: -15s;
+}
+
+@keyframes fly {
+    0% { 
+        transform: translateX(-50px) translateY(0px);
+    }
+    25% { 
+        transform: translateX(25vw) translateY(-20px);
+    }
+    50% { 
+        transform: translateX(50vw) translateY(10px);
+    }
+    75% { 
+        transform: translateX(75vw) translateY(-15px);
+    }
+    100% { 
+        transform: translateX(calc(100vw + 50px)) translateY(0px);
+    }
+}
+
+.tree-container {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.tree-trunk {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 80px;
+    background: linear-gradient(180deg, #8b4513 0%, #654321 100%);
+    border-radius: 10px 10px 2px 2px;
+}
+
+.tree-leaves {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, #00ff00 100%, #00ff00 100%, #00ff00 100%);
+    border-radius: 50%;
+    transition: all 0.5s ease;
+}
+
+.tree-leaves.growing {
+    transform: translateX(-50%) scale(1.2);
+    filter: brightness(1.2);
+}
+
+.tree-leaves::before,
+.tree-leaves::after {
+    content: '';
+    position: absolute;
+    background: radial-gradient(circle, #00ff00 100%, #00ff00 100%, #00ff00 100%);
+    border-radius: 50%;
+}
+
+.tree-leaves::before {
+    width: 150px;
+    height: 150px;
+    top: -30px;
+    left: -20px;
+}
+
+.tree-leaves::after {
+    width: 120px;
+    height: 120px;
+    top: -10px;
+    right: -15px;
+}
+
+/* Extra leaves styling */
+.tree-leaves .leaf {
+    position: absolute;
+    background: radial-gradient(circle, #00ff00 100%, #00ff00 100%, #00ff00 100%);
+    border-radius: 50%;
+    opacity: 0.9;
+}
+
+/* Position extra leaves */
+.tree-leaves .leaf1 {
+    width: 100px;
+    height: 100px;
+    top: -40px;
+    left: 50px;
+}
+.tree-leaves .leaf2 {
+    width: 130px;
+    height: 130px;
+    top: -60px;
+    right: 40px;
+}
+.tree-leaves .leaf3 {
+    width: 110px;
+    height: 110px;
+    top: 30px;
+    left: -40px;
+}
+.tree-leaves .leaf4 {
+    width: 90px;
+    height: 90px;
+    top: 20px;
+    right: -30px;
+}
+.tree-leaves .leaf5 {
+    width: 80px;
+    height: 80px;
+    top: 60px;
+    left: 40px;
+}
+
+.tree-leaves .leaf6 {
+    width: 80px;
+    height: 80px;
+    bottom:1px;
+    left: 20px;
+}
+
+.tree-leaves .leaf7 {
+    width: 80px;
+    height: 80px;
+    bottom: 1px;
+    left: 100px;
+}
+
+.tree-leaves .leaf8 {
+    width: 80px;
+    height: 80px;
+    bottom: 2px;
+    right: 100px;
+}
+
+.tree-leaves .leaf9 {
+    width: 80px;
+    height: 80px;
+    bottom: 1px;
+    right: 100px;
+}
+
+.grass {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(180deg, #90ee90 0%, #228b22 100%);
+    overflow: hidden;
+}
+
+.grass::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: repeating-linear-gradient(
+        90deg,
+        #228b22 0px,
+        #32cd32 2px,
+        #228b22 4px
+    );
+}
+
+.timer-display {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #316f08;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.feature-card {
+    background: rgba(247, 246, 246, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(34, 197, 94, 0.3);
+}
+
+.progress-ring {
+    transform: rotate(-90deg);
+}
+
+.progress-ring-circle {
+    stroke-dasharray: 283;
+    stroke-dashoffset: 283;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.floating-element {
+    animation: gentleFloat 3s ease-in-out infinite;
+}
+
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.logo-text {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.chart-container {
+    height: 300px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding-top: 20px;
+    padding-bottom: 60px;
+    padding-left: 10px;
+}
+
+/* New CSS for navigation */
+.nav-link.active {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.content-section {
+    transition: opacity 0.5s ease-in-out;
+}
